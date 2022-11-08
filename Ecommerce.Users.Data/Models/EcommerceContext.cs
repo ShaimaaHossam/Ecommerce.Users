@@ -77,15 +77,7 @@ namespace Ecommerce.Users.Data.Models
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasIndex(e => e.PcategoryId, "IX_Categories_PCategoryID");
-
                 entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.PcategoryId).HasColumnName("PCategoryID");
-
-                entity.HasOne(d => d.Pcategory)
-                    .WithMany(p => p.InversePcategory)
-                    .HasForeignKey(d => d.PcategoryId);
             });
 
             modelBuilder.Entity<Order>(entity =>
