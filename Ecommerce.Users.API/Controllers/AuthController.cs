@@ -13,11 +13,7 @@ namespace Ecommerce.Users.API.Controllers
         {
             this.userService = userService;
         }
-        [HttpGet]
-        public ActionResult Hello()
-        {
-            return Ok("Hello");
-        }
+       
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -34,6 +30,20 @@ namespace Ecommerce.Users.API.Controllers
                 }
             }
             return BadRequest("Information is missing");
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAsync(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await userService.LoginAsync(model);
+                if (result.isSuccess)
+                {
+                    return Ok(result);
+                }
+                return BadRequest(result);
+            }
+            return BadRequest("Login Failed, some fields are missing.");
         }
         
     }

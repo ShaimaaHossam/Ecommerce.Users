@@ -11,6 +11,7 @@ namespace Ecommerce.Users.Services
     public interface IUserService
     {
         Task<UserManagerResponse> RegisterAsync(RegisterViewModel registerViewModel);
+        Task<UserManagerResponse> LoginAsync(LoginViewModel loginViewModel);
 
     }
 }
