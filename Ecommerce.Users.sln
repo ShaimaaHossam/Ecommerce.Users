@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Users.Data", "Ecommerce.Users.Data\Ecommerce.Users.Data.csproj", "{1C751DA5-7CAF-4E36-875E-5134D77DDC14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Users.Data", "Ecommerce.Users.Data\Ecommerce.Users.Data.csproj", "{1C751DA5-7CAF-4E36-875E-5134D77DDC14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Users.API", "Ecommerce.Users.API\Ecommerce.Users.API.csproj", "{0DA0512E-0AD8-4CBB-BC4B-BE546451A1B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Users.API", "Ecommerce.Users.API\Ecommerce.Users.API.csproj", "{0DA0512E-0AD8-4CBB-BC4B-BE546451A1B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Users.Services", "Ecommerce.Users.Services\Ecommerce.Users.Services.csproj", "{69356ED0-B539-42E4-880A-D363F872FB59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Users.Services", "Ecommerce.Users.Services\Ecommerce.Users.Services.csproj", "{69356ED0-B539-42E4-880A-D363F872FB59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Users.ViewModels", "Ecommerce.Users.ViewModels\Ecommerce.Users.ViewModels.csproj", "{C0316B0A-8FBF-416A-9805-884131BDA9B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Users.ViewModels", "Ecommerce.Users.ViewModels\Ecommerce.Users.ViewModels.csproj", "{C0316B0A-8FBF-416A-9805-884131BDA9B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Users.Shared", "Ecommerce.Users.Shared\Ecommerce.Users.Shared.csproj", "{E4CF719F-9E91-4190-BF28-F191A812B05E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C0316B0A-8FBF-416A-9805-884131BDA9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0316B0A-8FBF-416A-9805-884131BDA9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0316B0A-8FBF-416A-9805-884131BDA9B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4CF719F-9E91-4190-BF28-F191A812B05E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CF719F-9E91-4190-BF28-F191A812B05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4CF719F-9E91-4190-BF28-F191A812B05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CF719F-9E91-4190-BF28-F191A812B05E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

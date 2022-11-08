@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Ecommerce.Users.Data.Models;
-using Ecommerce.Users.Services.Categories;
-using Ecommerce.Users.Services.Products;
+using Ecommerce.Users.Services;
 using Ecommerce.Users.ViewModels;
 using Ecommerce.Users.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
@@ -20,18 +19,19 @@ namespace Ecommerce.Users.API.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<GetProductViewModel>> GetProducts(int pageSize=10, int pageNumber=1, bool deleted = false)
+        public async Task<ActionResult<GetProductViewModel>> GetProducts(int pageSize=5, int pageNumber=1, bool deleted = false)
         {
             try
             {
                 var products = await db.GetAllProductsAsync(pageSize, pageNumber, deleted);
                 var actual = mapper.Map<IEnumerable<GetProductViewModel>>(products);
+                
                 return Ok(actual);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                    ex.ToString());
             }
 
         }
@@ -63,21 +63,22 @@ namespace Ecommerce.Users.API.Controllers
             {
                 if (productViewModel == null)
                 {
-                    return BadRequest();
+                    return BadRequest("No product was provided");
                 }
 
-
-                var result = await db.Add(productViewModel);
+                var actual = mapper.Map<Product>(productViewModel);
+                await db.Add(actual);
                 await db.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetProductById), new { id = result.Id  },
-                    result);
+                return CreatedAtAction(nameof(GetProductById), new { id = actual.Id  },
+                    actual);
             }
-            catch (Exception)
+            catch (Exception )
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
             }
         }
+        
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {

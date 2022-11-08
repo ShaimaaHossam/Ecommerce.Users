@@ -16,6 +16,7 @@ namespace Ecommerce.Users.Services.Profiles
         {
             CreateMap<Product, GetProductViewModel>().ReverseMap();
             CreateMap<Product, UpdateProductViewModel>().ReverseMap();
+            CreateMap<ProductsImage, AddImageViewModel>().ReverseMap();
         }
     }
 }

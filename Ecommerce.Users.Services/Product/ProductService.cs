@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Users.Services.Products
+namespace Ecommerce.Users.Services
 {
     public class ProductService : IProductService
     {
@@ -17,21 +17,12 @@ namespace Ecommerce.Users.Services.Products
         {
             this.db = db;
         }
-        public async Task<Product> Add(UpdateProductViewModel productVM)
+        public async Task Add(Product product)
         {
-            var product = new Product()
-            {
-                Name = productVM.Name,
-                Description = productVM.Description,
-                Price = productVM.Price,
-                Quantity = productVM.Quantity,
-                CategoryId = productVM.CategoryId,
-                Category = productVM.Category,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-            };
+            product.CreatedAt = DateTime.Now;
+            product.UpdatedAt = DateTime.Now;
             await db.Products.AddAsync(product);
-            return product;
+            
         }
 
         public async Task<Product> Delete(int id)
@@ -93,5 +84,7 @@ namespace Ecommerce.Users.Services.Products
 
             return null;
         }
+
+        
     }
 }

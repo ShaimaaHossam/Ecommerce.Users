@@ -30,5 +30,6 @@ namespace Ecommerce.Users.Data.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
 
+
     }
 }

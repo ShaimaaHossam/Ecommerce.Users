@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ecommerce.Users.Data\Ecommerce.Users.Data.csproj" />
+    <ProjectReference Include="..\Ecommerce.Users.Shared\Ecommerce.Users.Shared.csproj" />
     <ProjectReference Include="..\Ecommerce.Users.ViewModels\Ecommerce.Users.ViewModels.csproj" />
   </ItemGroup>
 

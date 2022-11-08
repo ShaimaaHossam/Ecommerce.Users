@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Ecommerce.Users.Data.Models
 {
-    public partial class EcommerceContext : DbContext
+    public partial class EcommerceContext : IdentityDbContext
     {
         public EcommerceContext()
         {
@@ -15,15 +16,7 @@ namespace Ecommerce.Users.Data.Models
             : base(options)
         {
         }
-
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
-        public virtual DbSet<Category> Categories { get; set; } = null!;
-        public virtual DbSet<Order> Orders { get; set; } = null!;
-        public virtual DbSet<Product> Products { get; set; } = null!;
-        public virtual DbSet<ProductsImage> ProductsImages { get; set; } = null!;
-
+      
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -33,8 +26,18 @@ namespace Ecommerce.Users.Data.Models
             }
         }
 
+
+       
+        public  DbSet<Category> Categories { get; set; } = null!;
+        public  DbSet<Order> Orders { get; set; } = null!;
+        public  DbSet<User> Users { get; set; } = null!;
+
+        public  DbSet<Product> Products { get; set; } = null!;
+        public  DbSet<ProductsImage> ProductsImages { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<AspNetUser>(entity =>
             {
                 entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
@@ -54,7 +57,8 @@ namespace Ecommerce.Users.Data.Models
                
             });
 
-      
+          
+
             modelBuilder.Entity<AspNetUserLogin>(entity =>
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
@@ -77,7 +81,11 @@ namespace Ecommerce.Users.Data.Models
 
             modelBuilder.Entity<Category>(entity =>
             {
+
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+
+           
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -122,4 +130,6 @@ namespace Ecommerce.Users.Data.Models
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
+
+
 }

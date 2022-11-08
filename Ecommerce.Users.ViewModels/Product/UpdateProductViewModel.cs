@@ -11,20 +11,14 @@ namespace Ecommerce.Users.ViewModels
 {
     public class UpdateProductViewModel
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
 
         public string Description { get; set; }
-        [Required]
 
         public decimal Price { get; set; }
-        [Required]
 
         public int Quantity { get; set; }
-        [ForeignKey("Category")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
 
     }
 }
