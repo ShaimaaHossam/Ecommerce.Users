@@ -21,6 +21,15 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<EcommerceContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:EcommerceDB"])
 );
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "ClientPermission",
+                      policy =>
+                      {
+                          policy.AllowAnyHeader().AllowAnyMethod().
+                          WithOrigins("http://localhost:3000");
+                      });
+});
 builder.Services.AddAuthentication(auth =>
 {
     auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -48,6 +57,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -58,7 +68,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseRouting();
+app.UseCors("ClientPermission");
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseEndpoints(endpoints =>

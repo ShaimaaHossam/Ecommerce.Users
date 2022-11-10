@@ -37,7 +37,7 @@ namespace Ecommerce.Users.Services
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync(int pageSize, int pageNumber, bool deleted)
         {
-            return await db.Products.Where(p => p.IsDeleted == deleted)
+            return await db.Products.Where(p => p.IsDeleted == deleted).Include(p => p.Category)
                 .Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)
                 .ToListAsync();
@@ -45,7 +45,7 @@ namespace Ecommerce.Users.Services
 
         public async Task<Product> GetProductById(int id)
         {
-            var product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var product = await db.Products.Where(p => p.Id == id).Include(p=>p.Category).FirstOrDefaultAsync();
             if (product == null || product.IsDeleted)
                 return null;
 
@@ -54,7 +54,7 @@ namespace Ecommerce.Users.Services
 
         public async Task<Category> GetProductCategory(int id)
         {
-            var product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var product = await GetProductById(id);
             var category = await db.Categories.FirstOrDefaultAsync(c => c.Id == product.CategoryId);
             if (category == null || category.IsDeleted)
                 return null;
@@ -68,7 +68,7 @@ namespace Ecommerce.Users.Services
         }
         public async Task<Product> Update(int id, UpdateProductViewModel productViewModel)
         {
-            var result = await db.Products
+            var result = await db.Products.Include(p=>p.Category)
             .FirstOrDefaultAsync(p => p.Id == id);
 
             if (result != null && !result.IsDeleted)

@@ -2,7 +2,7 @@
 using Ecommerce.Users.Data.Models;
 using Ecommerce.Users.Services;
 using Ecommerce.Users.ViewModels;
-using Ecommerce.Users.ViewModels.Product;
+using Ecommerce.Users.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Users.API.Controllers
@@ -19,13 +19,13 @@ namespace Ecommerce.Users.API.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<GetProductViewModel>> GetProducts(int pageSize=5, int pageNumber=1, bool deleted = false)
+        public async Task<ActionResult<GetProductViewModel>> GetProducts(int pageSize = 5, int pageNumber = 1, bool deleted = false)
         {
             try
             {
                 var products = await db.GetAllProductsAsync(pageSize, pageNumber, deleted);
                 var actual = mapper.Map<IEnumerable<GetProductViewModel>>(products);
-                
+
                 return Ok(actual);
             }
             catch (Exception ex)
@@ -56,6 +56,7 @@ namespace Ecommerce.Users.API.Controllers
                     "Error retrieving data from the database");
             }
         }
+
         [HttpPost]
         public async Task<ActionResult<Category>> CreateProduct(UpdateProductViewModel productViewModel)
         {
@@ -69,16 +70,16 @@ namespace Ecommerce.Users.API.Controllers
                 var actual = mapper.Map<Product>(productViewModel);
                 await db.Add(actual);
                 await db.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetProductById), new { id = actual.Id  },
+                return CreatedAtAction(nameof(GetProductById), new { id = actual.Id },
                     actual);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
             }
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {

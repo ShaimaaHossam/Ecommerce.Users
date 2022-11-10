@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Users.ViewModels.Product
+namespace Ecommerce.Users.ViewModels
 {
     public class GetProductViewModel
     {

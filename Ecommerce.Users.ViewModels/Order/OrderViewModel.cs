@@ -1,22 +1,13 @@
 ﻿using Ecommerce.Users.Data.Enums;
+using Ecommerce.Users.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Ecommerce.Users.Data.Models
+namespace Ecommerce.Users.ViewModels.Order
 {
-    [Table("Order")]
-    public partial class Order
+    public class OrderViewModel
     {
-        public Order()
-        {
-            Products = new HashSet<Product>();
-        }
-
         public int Id { get; set; }
         public OrderStatus Status { get; set; }
-        [ForeignKey("User")]
         public string UserId { get; set; } = null!;
         public IdentityUser User { get; set; }
         public decimal TotalPrice { get; set; }
@@ -24,9 +15,6 @@ namespace Ecommerce.Users.Data.Models
         public string AddressLine2 { get; set; } = null!;
         public string AddressLine3 { get; set; } = null!;
         public string PostalCode { get; set; } = null!;
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public bool IsDeleted { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }
