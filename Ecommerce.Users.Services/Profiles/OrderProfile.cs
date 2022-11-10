@@ -15,6 +15,8 @@ namespace Ecommerce.Users.Services.Profiles
         public OrderProfile()
         {
             CreateMap<Order, OrderViewModel>().ReverseMap();
+            CreateMap<Order, CreateOrderViewModel>().ReverseMap();
+
         }
     }
 }

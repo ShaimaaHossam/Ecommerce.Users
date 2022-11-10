@@ -13,5 +13,7 @@ namespace Ecommerce.Users.Services
         Task<UserManagerResponse> RegisterAsync(RegisterViewModel registerViewModel);
         Task<UserManagerResponse> LoginAsync(LoginViewModel loginViewModel);
 
+
+
     }
 }

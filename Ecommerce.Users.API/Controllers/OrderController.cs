@@ -57,7 +57,7 @@ namespace Ecommerce.Users.API.Controllers
             }
         }
         [HttpPost("{userId}")]
-        public async Task<ActionResult<Category>> CreateOrder(string userId, OrderViewModel orderViewModel)
+        public async Task<ActionResult<Order>> CreateOrder(string userId, CreateOrderViewModel orderViewModel)
         {
             try
             {

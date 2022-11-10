@@ -59,9 +59,10 @@ namespace Ecommerce.Users.Services
             if (result != null && !result.IsDeleted)
             {
                 result.Status = order.Status;
-                result.AddressLine1 = order.AddressLine1;
-                result.AddressLine2 = order.AddressLine2;
-                result.AddressLine3 = order.AddressLine3;
+                result.City = order.City;
+                result.Country = order.Country;
+                result.Street = order.Street;
+                result.Address = order.Address;
                 result.UpdatedAt = DateTime.Now;
                 return result;
             }
